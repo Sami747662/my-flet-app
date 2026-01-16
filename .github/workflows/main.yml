@@ -14,10 +14,14 @@ jobs:
           
       - name: Install Flet
         run: pip install flet
-          
+      
+      # Step to accept Android Licenses automatically
+      - name: Accept Android Licenses
+        run: yes | sdkmanager --licenses || true
+
       - name: Build APK
-        # Hum 'yes' command use kar rahay hain taake installation khud 'y' ho jaye
-        run: yes | flet build apk
+        # Yahan humne bataya ke file ka naam index.py hai
+        run: yes | flet build apk index.py
         
       - name: Upload APK
         uses: actions/upload-artifact@v4
