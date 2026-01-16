@@ -5,22 +5,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4  # Updated to v4
+      - uses: actions/checkout@v4
       
       - name: Set up Python
-        uses: actions/setup-python@v5 # Updated to v5
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
           
       - name: Install Flet
-        run: |
-          pip install flet
+        run: pip install flet
           
       - name: Build APK
-        run: flet build apk
+        # Hum 'yes' command use kar rahay hain taake installation khud 'y' ho jaye
+        run: yes | flet build apk
         
       - name: Upload APK
-        uses: actions/upload-artifact@v4 # Yahan v4 kar diya hai (Error fix)
+        uses: actions/upload-artifact@v4
         with:
           name: my-app-apk
           path: build/apk/*.apk
